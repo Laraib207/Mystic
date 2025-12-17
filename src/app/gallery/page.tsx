@@ -10,24 +10,18 @@ const galleryCategories = [
   { id: "decoration", name: "Decoration", icon: "🎨" },
 ];
 
+
 const galleryImages = [
-  { id: 1, category: "weddings", title: "Royal Wedding Ceremony", image: "/gallery/wedding1.jpg", color: "from-pink-500 to-rose-500" },
-  { id: 2, category: "corporate", title: "Corporate Conference", image: "/gallery/corporate1.jpg", color: "from-blue-500 to-cyan-500" },
-  { id: 3, category: "cultural", title: "Traditional Festival", image: "/gallery/cultural1.jpg", color: "from-purple-500 to-indigo-500" },
-  { id: 4, category: "weddings", title: "Elegant Reception", image: "/gallery/wedding2.jpg", color: "from-pink-500 to-rose-500" },
-  { id: 5, category: "parties", title: "Birthday Celebration", image: "/gallery/party1.jpg", color: "from-amber-500 to-orange-500" },
-  { id: 6, category: "decoration", title: "Stage Design", image: "/gallery/decoration1.jpg", color: "from-emerald-500 to-teal-500" },
-  { id: 7, category: "weddings", title: "Destination Wedding", image: "/gallery/wedding3.jpg", color: "from-pink-500 to-rose-500" },
-  { id: 8, category: "corporate", title: "Product Launch Event", image: "/gallery/corporate2.jpg", color: "from-blue-500 to-cyan-500" },
-  { id: 9, category: "cultural", title: "Musical Night", image: "/gallery/cultural2.jpg", color: "from-purple-500 to-indigo-500" },
-  { id: 10, category: "parties", title: "Private Party", image: "/gallery/party2.jpg", color: "from-amber-500 to-orange-500" },
-  { id: 11, category: "decoration", title: "Floral Arrangement", image: "/gallery/decoration2.jpg", color: "from-emerald-500 to-teal-500" },
-  { id: 12, category: "weddings", title: "Mandap Setup", image: "/gallery/wedding4.jpg", color: "from-pink-500 to-rose-500" },
+  { id: 1, category: "weddings", title: "Royal Wedding Ceremony", image: "/gallery/1.jpg", color: "from-pink-500 to-rose-500" },
+  { id: 2, category: "corporate", title: "Corporate Conference", image: "/gallery/2.jpg", color: "from-blue-500 to-cyan-500" },
+  { id: 3, category: "cultural", title: "Traditional Festival", image: "/gallery/3.jpg", color: "from-purple-500 to-indigo-500" },
+  { id: 4, category: "weddings", title: "Elegant Reception", image: "/gallery/4.jpg", color: "from-pink-500 to-rose-500" },
 ];
+
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [hoveredImage, setHoveredImage] = useState(null);
+  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
 
   const filteredImages = activeCategory === "all" 
     ? galleryImages 
@@ -132,10 +126,24 @@ export default function GalleryPage() {
               onMouseEnter={() => setHoveredImage(image.id)}
               onMouseLeave={() => setHoveredImage(null)}
             >
+
               {/* Image Container */}
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
-                {/* Placeholder with Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${image.color} flex items-center justify-center`}>
+                {/* Actual Image */}
+                <img
+                  src={image.image}
+                  alt={image.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    // Fallback to gradient placeholder if image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                {/* Fallback Gradient Placeholder */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${image.color} flex items-center justify-center hidden`}>
                   <div className="text-white text-center p-8">
                     <div className="text-6xl mb-4">📷</div>
                     <h3 className="text-2xl font-bold mb-2">{image.title}</h3>
