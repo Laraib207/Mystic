@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import ServicesSection from "@/components/ServicesSection";
+import AlertServicesSection from "@/components/AlertServicesSection";
 import GalleryPreview from "@/components/GalleryPreview";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
@@ -10,6 +11,7 @@ export default function Home() {
     <>
       <Hero />
       <ServicesSection />
+      <AlertServicesSection />
       <GalleryPreview />
       <WhyChooseUs />
       <Testimonials />

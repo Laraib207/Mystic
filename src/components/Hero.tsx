@@ -187,81 +187,187 @@
 
 
 
+
+
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+
+// type Particle = {
+//   left: string;
+//   top: string;
+//   delay: string;
+//   duration: string;
+// };
+
+// export default function Hero() {
+//   const [particles, setParticles] = useState<Particle[]>([]);
+
+//   useEffect(() => {
+//     // Generate particles ONLY on client
+//     const generated = Array.from({ length: 20 }).map(() => ({
+//       left: `${Math.random() * 100}%`,
+//       top: `${Math.random() * 100}%`,
+//       delay: `${Math.random() * 5}s`,
+//       duration: `${3 + Math.random() * 4}s`,
+//     }));
+
+//     setParticles(generated);
+//   }, []);
+
+//   return (
+//     <section className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-black via-neutral-900 to-black overflow-hidden">
+
+//       {/* Soft glowing shapes (STATIC – SAFE) */}
+//       <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
+//       <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse delay-700" />
+//       <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+
+//       {/* Floating particles (CLIENT ONLY) */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         {particles.map((p, i) => (
+//           <div
+//             key={i}
+//             className="absolute w-1 h-1 bg-white/30 rounded-full animate-float"
+//             style={{
+//               left: p.left,
+//               top: p.top,
+//               animationDelay: p.delay,
+//               animationDuration: p.duration,
+//             }}
+//           />
+//         ))}
+//       </div>
+
+//       {/* Content */}
+//       <div className="relative z-10 px-6">
+//         <span className="inline-flex items-center gap-2 px-6 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm text-white/90 mb-8">
+//           <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+//           India’s Premium Event Curators
+//         </span>
+
+//         <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight">
+//           Creating
+//           <span className="block mt-2 text-[#C9A24D]">Mystic Moments</span>
+//           <span className="block mt-2 text-white/90">That Last Forever</span>
+//         </h1>
+
+//         <p className="mt-8 text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
+//          We turn every  <span className="text-amber-300 font-medium">moment </span> into magic.
+//         </p>
+
+//         <div className="mt-12 flex flex-col sm:flex-row gap-5 justify-center">
+//           <button className="px-10 py-4 rounded-full bg-[#C9A24D] text-black font-medium hover:bg-white transition">
+//             Book Your Event
+//           </button>
+//           <button className="px-10 py-4 rounded-full border border-white/30 text-white hover:bg-white hover:text-black transition">
+//             View Gallery
+//           </button>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+
+
+
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
-type Particle = {
-  left: string;
-  top: string;
-  delay: string;
-  duration: string;
-};
+const slides = [
+  { src: "/hero/hero1.jpg", title: "Luxury Weddings" },
+  { src: "/hero/hero2.jpg", title: "Corporate Excellence" },
+  { src: "/hero/hero3.jpg", title: "Private Celebrations" },
+  { src: "/hero/hero4.jpg", title: "Elegant Experiences" },
+];
 
 export default function Hero() {
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    // Generate particles ONLY on client
-    const generated = Array.from({ length: 20 }).map(() => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 5}s`,
-      duration: `${3 + Math.random() * 4}s`,
-    }));
-
-    setParticles(generated);
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-black via-neutral-900 to-black overflow-hidden">
-
-      {/* Soft glowing shapes (STATIC – SAFE) */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse delay-700" />
-      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-
-      {/* Floating particles (CLIENT ONLY) */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles.map((p, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/30 rounded-full animate-float"
-            style={{
-              left: p.left,
-              top: p.top,
-              animationDelay: p.delay,
-              animationDuration: p.duration,
-            }}
+    <section className="relative h-screen overflow-hidden">
+      {/* Slider */}
+      <AnimatePresence>
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={slides[index].src}
+            alt="Event"
+            fill
+            className="object-cover"
+            priority
           />
-        ))}
-      </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Content */}
-      <div className="relative z-10 px-6">
-        <span className="inline-flex items-center gap-2 px-6 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm text-white/90 mb-8">
-          <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-          India’s Premium Event Curators
-        </span>
+      <div className="relative z-10 h-full flex items-center justify-center text-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="max-w-4xl"
+        >
+          <span className="inline-block px-6 py-2 mb-6 text-sm bg-white/10 backdrop-blur rounded-full text-white tracking-wide">
+            India’s Premium Event Curators
+          </span>
 
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight">
-          Creating
-          <span className="block mt-2 text-[#C9A24D]">Mystic Moments</span>
-          <span className="block mt-2 text-white/90">That Last Forever</span>
-        </h1>
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight">
+            Creating
+            <span className="block text-[#C9A24D] mt-2">
+              Mystic Moments
+            </span>
+            <span className="block text-white/90 mt-2">
+              That Last Forever
+            </span>
+          </h1>
 
-        <p className="mt-8 text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
-         We turn every  <span className="text-amber-300 font-medium">moment </span> into magic.
-        </p>
+          <p className="mt-8 text-lg md:text-xl text-white/80">
+            We turn every <span className="text-amber-300">moment</span> into magic.
+          </p>
 
-        <div className="mt-12 flex flex-col sm:flex-row gap-5 justify-center">
-          <button className="px-10 py-4 rounded-full bg-[#C9A24D] text-black font-medium hover:bg-white transition">
-            Book Your Event
-          </button>
-          <button className="px-10 py-4 rounded-full border border-white/30 text-white hover:bg-white hover:text-black transition">
-            View Gallery
-          </button>
-        </div>
+          <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="px-10 py-4 rounded-full bg-[#C9A24D] text-black font-medium hover:bg-white transition">
+              Book Your Event
+            </button>
+            <button className="px-10 py-4 rounded-full border border-white/40 text-white hover:bg-white hover:text-black transition">
+              View Gallery
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Slider Indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {slides.map((_, i) => (
+          <span
+            key={i}
+            className={`w-3 h-3 rounded-full ${
+              i === index ? "bg-amber-400" : "bg-white/40"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
