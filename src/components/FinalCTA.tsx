@@ -18,7 +18,7 @@ export default function FinalCTA() {
         </h2>
 
         <p className="mt-6 text-gray-300 text-lg">
-          Aaj hi humse connect karein aur apne event ko ek magical experience banayein.
+          connect with us today and let's start planning an unforgettable event together!
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">

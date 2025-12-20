@@ -36,10 +36,10 @@ export default function AlertServicesSection() {
           </p>
 
           <p className="text-sm md:text-base text-slate-600 leading-relaxed mt-3">
-            Har ceremony, har ritual – hum usse aapki kahani ke hisaab se design
-            karte hain. Whether it&apos;s an intimate mehendi or a grand reception,
-            we blend creativity, culture and elegance to craft experiences that feel
-            warm, personal and luxuriously curated.
+           every Ceremony, Every Ritual, Every Moment – Perfectly Planned.
+           at mystic moments, we specialize in crafting weddings that reflect your unique love story.
+            our expert team ensures every detail is flawlessly executed, allowing you to cherish every moment without worry.
+            event planning made easy, elegant, and unforgettable. so you can focus on what truly matters – celebrating your love.
           </p>
 
           <p className="text-sm md:text-base text-slate-600 leading-relaxed mt-3">
@@ -48,7 +48,7 @@ export default function AlertServicesSection() {
             <span className="font-semibold text-slate-900">
               nothing is left to chance
             </span>
-            . Aap sirf taiyaar rahiye – baaki poori mehfil ka zimma humara.
+. you ready to say "i do" to a perfectly planned wedding?
           </p>
 
           {/* Highlight bullet line */}
@@ -106,9 +106,12 @@ export default function AlertServicesSection() {
               Why Couples Choose Us
             </p>
             <p className="text-[13px] text-slate-700">
-              100+ happy couples, 10+ cities, zero compromise on detailing. Hum
-              har wedding ko apna project nahi, apni zimmedari samajh kar plan
-              karte hain.
+             
+             100+ weddings planned with love, care & impeccable attention to detail.
+             we understand the significance of this special day and strive to make
+              it perfect in every way. and that's why couples trust us to bring their, wedding visions to life.
+              enjoy a stress-free planning experience with our expert team by your side. at mystic moments, your dream wedding is our mission.
+              
             </p>
           </div>
         </motion.div>

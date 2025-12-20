@@ -1,12 +1,13 @@
 export const services = [
+
   {
     title: "Wedding Celebrations",
-    desc: "Shaadi ke har pal ko royal aur yaadon se bhara banate hain.",
+    desc: "We make every moment of your wedding royal and filled with memories.",
     icon: "💍",
   },
   {
     title: "Mehfil & Cultural Events",
-    desc: "Riwayat, rang aur jazbaat se bhari mehfilon ka intezam.",
+    desc: "Organizing gatherings filled with tradition, colors and emotions.",
     icon: "🎶",
   },
   {
@@ -16,17 +17,17 @@ export const services = [
   },
   {
     title: "Birthday & Private Parties",
-    desc: "Har celebration ko fun, classy aur memorable banate hain.",
+    desc: "We make every celebration fun, classy and memorable.",
     icon: "🎂",
   },
   {
     title: "Stage & Theme Decoration",
-    desc: "Themes jo mehfil me jaan daal dein.",
+    desc: "Themes that bring life to your gathering.",
     icon: "🎨",
   },
   {
     title: "Complete Event Management",
-    desc: "Planning se execution tak, sab kuch hum sambhalte hain.",
+    desc: "From planning to execution, we handle everything.",
     icon: "✨",
   },
 ];

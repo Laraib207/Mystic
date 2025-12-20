@@ -290,6 +290,207 @@
 
 
 
+// "use client";
+// import { useEffect, useState } from "react";
+
+// export default function AboutPage() {
+//   const [scrollY, setScrollY] = useState(0);
+
+//   useEffect(() => {
+//     const handleScroll = () => setScrollY(window.scrollY);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   const stats = [
+//     { number: "500+", label: "Events Curated", icon: "🎉" },
+//     { number: "10+", label: "Years of Craft", icon: "🏆" },
+//     { number: "40+", label: "Cities Covered", icon: "🌏" },
+//     { number: "100%", label: "Client Delight", icon: "⭐" },
+//   ];
+
+//   return (
+//     <div className="relative bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
+//       {/* Soft blobs */}
+//       <div className="pointer-events-none absolute -top-24 -left-24 w-80 h-80 rounded-full bg-amber-200/30 blur-3xl" />
+//       <div className="pointer-events-none absolute top-1/3 right-0 w-96 h-96 rounded-full bg-purple-200/30 blur-3xl" />
+//       <div className="pointer-events-none absolute bottom-0 left-1/4 w-72 h-72 rounded-full bg-pink-200/30 blur-3xl" />
+
+//       {/* Hero / intro */}
+//       <section className="relative pt-28 pb-16 max-w-6xl mx-auto px-6">
+//         <div className="mb-10">
+//           <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold shadow-lg">
+//             <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+//             <span>About Mystic Moments</span>
+//           </div>
+//         </div>
+
+//         <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] items-start">
+//           {/* Text column */}
+//           <div>
+//             <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-slate-900 leading-tight mb-6">
+//               VISION · STORY ·
+//               <span className="block text-[#C9A24D] mt-1">
+//                 THE SOUL OF YOUR CELEBRATION
+//               </span>
+//             </h1>
+
+//             <div className="space-y-5 text-sm sm:text-[15px] md:text-base leading-relaxed text-slate-700">
+//               <p>
+//                 Mystic Moments ek premium event management studio hai jo weddings,
+//                 corporate experiences aur private celebrations ko cinematic
+//                 perfection ke saath design karta hai. Hum believe karte hain ki
+//                 har event sirf ek function nahi, balki ek emotion hota hai – isi
+//                 liye planning se le kar last goodbye tak har detail ko
+//                 carefully craft kiya jata hai.
+//               </p>
+//               <p>
+//                 Hamari core team planners, designers, production experts aur
+//                 hospitality professionals se milkar bani hai, jo India ke
+//                 leading venues ke saath kaam kar chuki hai. Intimate mehendi ho,
+//                 five‑star ballroom reception ho ya multi‑city corporate roadshow,
+//                 hum har scale par structured planning, clear communication aur
+//                 calm execution lekar aate hain. Aapko ek single point of contact
+//                 milta hai jo budgets, vendors, timelines aur on‑ground team
+//                 sab manage karta hai – taaki aap sirf enjoy kar sakein.
+//               </p>
+//               <p>
+//                 Mystic Moments ka style modern, luxurious aur culture‑friendly
+//                 hai. Hum traditional rituals ko respect karte hue contemporary
+//                 décor, lighting, music aur guest experience ko blend karte hain.
+//                 Har project ke liye custom mood‑board, layout plan aur run‑sheet
+//                 banaya jata hai, jisse event day par koi bhi detail miss nahi
+//                 hoti. Humari commitment simple hai – jab guests venue se
+//                 nikalte hain, unke dil me bas ek hi thought ho: “Yeh event
+//                 truly unforgettable tha.”
+//               </p>
+//             </div>
+//           </div>
+
+//           {/* Image collage */}
+//           <div className="relative">
+//             {/* main image */}
+//             <div
+//               className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/80 bg-slate-200 h-72 sm:h-80"
+//               style={{
+//                 backgroundImage: "url('/hero/tbb1.jpg')",
+//                 backgroundSize: "cover",
+//                 backgroundPosition: "center",
+//               }}
+//             >
+//               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+//               <div className="absolute bottom-4 left-4 px-4 py-2 rounded-full bg-white/85 text-[11px] font-semibold tracking-wide text-slate-900 flex items-center gap-2">
+//                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
+//                 Signature Reception Setup · Mystic Moments
+//               </div>
+//             </div>
+
+//             {/* top-right small image */}
+//             <div
+//               className="absolute -top-6 right-2 w-32 sm:w-36 h-32 sm:h-36 rounded-2xl overflow-hidden shadow-xl border border-white/80 bg-slate-200"
+//               style={{
+//                 backgroundImage: "url('/hero/tbb2.jpg')",
+//                 backgroundSize: "cover",
+//                 backgroundPosition: "center",
+//               }}
+//             />
+
+//             {/* bottom-left small image */}
+//             <div
+//               className="absolute -bottom-8 left-0 w-32 sm:w-36 h-32 sm:h-36 rounded-2xl overflow-hidden shadow-xl border border-white/80 bg-slate-200"
+//               style={{
+//                 backgroundImage: "url('/hero/tbb3.jpg')",
+//                 backgroundSize: "cover",
+//                 backgroundPosition: "center",
+//               }}
+//             />
+
+//             {/* floating tag card */}
+//             <div className="absolute bottom-[-3.5rem] right-2 w-56 sm:w-64 bg-white rounded-2xl shadow-xl border border-amber-100 p-4">
+//               <p className="text-[11px] uppercase tracking-[0.22em] text-amber-600 font-semibold mb-1">
+//                 Behind The Scenes
+//               </p>
+//               <p className="text-xs text-slate-700">
+//                 Décor layouts, catering flow aur guest experience ko hum pehle
+//                 se storyboard karte hain – taaki event day par sab kuch effortless
+//                 lage.
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Stats band */}
+//       <section className="relative mt-24 py-16 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900">
+//         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+//           {stats.map((s, i) => (
+//             <div
+//               key={s.label}
+//               className="text-center text-slate-100 animate-[fadeInUp_0.6s_ease-out_forwards]"
+//               style={{ animationDelay: `${i * 0.12}s` }}
+//             >
+//               <div className="text-4xl mb-3">{s.icon}</div>
+//               <div className="text-3xl md:text-4xl font-bold text-[#F5E3B5] mb-1">
+//                 {s.number}
+//               </div>
+//               <div className="text-xs sm:text-sm tracking-wide text-slate-200/80">
+//                 {s.label}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+
+//       {/* Second story block */}
+//       <section className="relative py-20 max-w-6xl mx-auto px-6">
+//         <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] items-center">
+//           {/* Image */}
+//           <div
+//             className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/80 bg-slate-200 h-72 sm:h-80"
+//             style={{
+//               backgroundImage: "url('/hero/tbb4.jpg')",
+//               backgroundSize: "cover",
+//               backgroundPosition: "center",
+//             }}
+//           >
+//             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+//             <div className="absolute top-4 left-4 px-4 py-2 rounded-full bg-white/85 text-[11px] font-semibold tracking-wide text-slate-900">
+//               Conference · Social · Destination · Intimate
+//             </div>
+//           </div>
+
+//           {/* Text */}
+//           <div className="space-y-4 text-sm sm:text-[15px] md:text-base leading-relaxed text-slate-700">
+//             <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-slate-900 mb-2">
+//               One Studio For Every Kind Of Event
+//             </h2>
+//             <p>
+//               Weddings ke alawa Mystic Moments corporates, brand launches,
+//               offsites, award nights, influencers meets aur high‑profile private
+//               parties bhi handle karta hai. Har format ke liye alag playbook
+//               design ki gayi hai – jisse hospitality, staging, AV aur guest
+//               journey perfectly aligned rahe.
+//             </p>
+//             <p>
+//               Human warm team, disciplined backend aur creative partners milkar
+//               aapko ek aisi experience line‑up dete hain jahan décor sirf
+//               background nahi, balki story ka hissa lagta hai. Chahe ballroom
+//               ho, heritage property ho ya open‑air lawn, hum lighting, florals,
+//               layouts aur music ko is tarah sync karte hain ki poora space ek
+//               mystic cinematic frame jaisa feel ho.
+//             </p>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* keyframes via global CSS: add once in globals.css */}
+//     </div>
+//   );
+// }
+
+
+
+
 "use client";
 import { useEffect, useState } from "react";
 
@@ -311,12 +512,12 @@ export default function AboutPage() {
 
   return (
     <div className="relative bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
-      {/* Soft blobs */}
+      {/* Soft background glows */}
       <div className="pointer-events-none absolute -top-24 -left-24 w-80 h-80 rounded-full bg-amber-200/30 blur-3xl" />
       <div className="pointer-events-none absolute top-1/3 right-0 w-96 h-96 rounded-full bg-purple-200/30 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-1/4 w-72 h-72 rounded-full bg-pink-200/30 blur-3xl" />
 
-      {/* Hero / intro */}
+      {/* Hero / Intro */}
       <section className="relative pt-28 pb-16 max-w-6xl mx-auto px-6">
         <div className="mb-10">
           <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold shadow-lg">
@@ -326,50 +527,66 @@ export default function AboutPage() {
         </div>
 
         <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] items-start">
-          {/* Text column */}
+          {/* Text */}
           <div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-slate-900 leading-tight mb-6">
               VISION · STORY ·
-              <span className="block text-[#C9A24D] mt-1">
-                THE SOUL OF YOUR CELEBRATION
+              <span className="block text-[#C9A24D] mt-1 italic">
+                The Soul of Your Celebration
               </span>
             </h1>
 
             <div className="space-y-5 text-sm sm:text-[15px] md:text-base leading-relaxed text-slate-700">
               <p>
-                Mystic Moments ek premium event management studio hai jo weddings,
-                corporate experiences aur private celebrations ko cinematic
-                perfection ke saath design karta hai. Hum believe karte hain ki
-                har event sirf ek function nahi, balki ek emotion hota hai – isi
-                liye planning se le kar last goodbye tak har detail ko
-                carefully craft kiya jata hai.
+                <span className="font-serif italic text-slate-900">
+                  Mystic Moments
+                </span>{" "}
+                is a premium event management studio specializing in weddings,
+                corporate experiences, and private celebrations crafted with
+                cinematic precision. We believe that every event is more than a
+                function — it is an emotion. That belief guides us from the
+                first planning conversation to the final farewell of your guests.
               </p>
+
               <p>
-                Hamari core team planners, designers, production experts aur
-                hospitality professionals se milkar bani hai, jo India ke
-                leading venues ke saath kaam kar chuki hai. Intimate mehendi ho,
-                five‑star ballroom reception ho ya multi‑city corporate roadshow,
-                hum har scale par structured planning, clear communication aur
-                calm execution lekar aate hain. Aapko ek single point of contact
-                milta hai jo budgets, vendors, timelines aur on‑ground team
-                sab manage karta hai – taaki aap sirf enjoy kar sakein.
+                Our core team brings together planners, designers, production
+                specialists, and hospitality professionals who have worked
+                across India’s most renowned venues. Whether it is an intimate
+                mehendi, a five-star ballroom reception, or a multi-city
+                corporate roadshow, we deliver structured planning, transparent
+                communication, and calm, confident execution.
               </p>
+
               <p>
-                Mystic Moments ka style modern, luxurious aur culture‑friendly
-                hai. Hum traditional rituals ko respect karte hue contemporary
-                décor, lighting, music aur guest experience ko blend karte hain.
-                Har project ke liye custom mood‑board, layout plan aur run‑sheet
-                banaya jata hai, jisse event day par koi bhi detail miss nahi
-                hoti. Humari commitment simple hai – jab guests venue se
-                nikalte hain, unke dil me bas ek hi thought ho: “Yeh event
-                truly unforgettable tha.”
+                Clients are supported through a single point of contact who
+                manages budgets, vendors, timelines, and on-ground teams —
+                allowing you to remain fully present and enjoy every moment.
+                Our approach ensures clarity behind the scenes and effortless
+                flow on the event day.
+              </p>
+
+              <p>
+                The Mystic Moments aesthetic is modern, luxurious, and
+                culture-conscious. We honor traditional rituals while blending
+                them seamlessly with contemporary décor, lighting, music, and
+                guest experience design. Every project begins with a custom
+                mood board, spatial layout, and detailed run-sheet — ensuring
+                no detail is ever overlooked.
+              </p>
+
+              <p className="font-serif italic text-slate-900">
+                Our commitment is simple: when your guests leave the venue,
+                they carry just one thought with them —
+                <span className="text-[#C9A24D]">
+                  {" "}
+                  “This was truly unforgettable.”
+                </span>
               </p>
             </div>
           </div>
 
           {/* Image collage */}
           <div className="relative">
-            {/* main image */}
             <div
               className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/80 bg-slate-200 h-72 sm:h-80"
               style={{
@@ -385,7 +602,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* top-right small image */}
             <div
               className="absolute -top-6 right-2 w-32 sm:w-36 h-32 sm:h-36 rounded-2xl overflow-hidden shadow-xl border border-white/80 bg-slate-200"
               style={{
@@ -395,7 +611,6 @@ export default function AboutPage() {
               }}
             />
 
-            {/* bottom-left small image */}
             <div
               className="absolute -bottom-8 left-0 w-32 sm:w-36 h-32 sm:h-36 rounded-2xl overflow-hidden shadow-xl border border-white/80 bg-slate-200"
               style={{
@@ -405,22 +620,20 @@ export default function AboutPage() {
               }}
             />
 
-            {/* floating tag card */}
             <div className="absolute bottom-[-3.5rem] right-2 w-56 sm:w-64 bg-white rounded-2xl shadow-xl border border-amber-100 p-4">
               <p className="text-[11px] uppercase tracking-[0.22em] text-amber-600 font-semibold mb-1">
-                Behind The Scenes
+                Behind the Scenes
               </p>
               <p className="text-xs text-slate-700">
-                Décor layouts, catering flow aur guest experience ko hum pehle
-                se storyboard karte hain – taaki event day par sab kuch effortless
-                lage.
+                Décor layouts, catering flow, and guest journeys are storyboarded
+                well in advance — so the event day feels seamless and effortless.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats band */}
+      {/* Stats */}
       <section className="relative mt-24 py-16 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s, i) => (
@@ -441,10 +654,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Second story block */}
+      {/* Second Story */}
       <section className="relative py-20 max-w-6xl mx-auto px-6">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] items-center">
-          {/* Image */}
           <div
             className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/80 bg-slate-200 h-72 sm:h-80"
             style={{
@@ -459,31 +671,29 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Text */}
           <div className="space-y-4 text-sm sm:text-[15px] md:text-base leading-relaxed text-slate-700">
             <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-slate-900 mb-2">
-              One Studio For Every Kind Of Event
+              One Studio for Every Kind of Event
             </h2>
+
             <p>
-              Weddings ke alawa Mystic Moments corporates, brand launches,
-              offsites, award nights, influencers meets aur high‑profile private
-              parties bhi handle karta hai. Har format ke liye alag playbook
-              design ki gayi hai – jisse hospitality, staging, AV aur guest
-              journey perfectly aligned rahe.
+              Beyond weddings, Mystic Moments curates corporate events, brand
+              launches, offsites, award nights, influencer gatherings, and
+              high-profile private celebrations. Each format is supported by a
+              dedicated playbook — ensuring hospitality, staging, AV, and guest
+              journeys remain perfectly aligned.
             </p>
+
             <p>
-              Human warm team, disciplined backend aur creative partners milkar
-              aapko ek aisi experience line‑up dete hain jahan décor sirf
-              background nahi, balki story ka hissa lagta hai. Chahe ballroom
-              ho, heritage property ho ya open‑air lawn, hum lighting, florals,
-              layouts aur music ko is tarah sync karte hain ki poora space ek
-              mystic cinematic frame jaisa feel ho.
+              A warm human team, a disciplined backend, and trusted creative
+              partners come together to design experiences where décor is not
+              just a backdrop, but part of the story itself. Whether a ballroom,
+              heritage property, or open-air lawn, lighting, florals, layouts,
+              and music are orchestrated to create a cinematic, mystic frame.
             </p>
           </div>
         </div>
       </section>
-
-      {/* keyframes via global CSS: add once in globals.css */}
     </div>
   );
 }
