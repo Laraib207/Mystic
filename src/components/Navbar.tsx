@@ -665,6 +665,7 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
+    { name: "Festival Events", href: "/festival-events" }, 
     { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ];
