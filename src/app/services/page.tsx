@@ -293,175 +293,522 @@
 
 "use client";
 
+import { useState } from "react";
+
+const GOLD_PRIMARY = "#D4AF37";
+const GOLD_SECONDARY = "#FFD700";
+
 const services = [
   {
     title: "Wedding Celebrations",
-    desc: "Transforming every wedding moment into a royal experience filled with timeless memories.",
+    tagline: "Where Love Meets Luxury",
+    desc: "Transform your special day into a breathtaking royal affair with our exclusive wedding planning services that blend tradition, elegance, and modern sophistication.",
     icon: "💍",
-    color: "from-amber-500 to-yellow-500",
-    bgGradient: "from-amber-50 to-yellow-50",
-    features: ["Mandap & Venue Décor", "End-to-End Planning", "Curated Catering"]
+    image: "/gallery/Wedding-Celebrations.jpg",
+    stats: ["500+ Weddings", "100% Satisfaction", "Premium Venues"],
+    highlight:
+      "Couples describe our weddings as *storybook-perfect* – shimmering mandaps, cascading florals, and rituals wrapped in warmth, where every photograph glows with golden elegance and heartfelt emotion."
   },
   {
-    title: "Cultural & Musical Evenings",
-    desc: "Thoughtfully designed gatherings inspired by tradition, rhythm, and emotion.",
-    icon: "🎶",
-    color: "from-purple-500 to-indigo-500",
-    bgGradient: "from-purple-50 to-indigo-50",
-    features: ["Traditional Setups", "Live Performances", "Cultural Styling"]
-  },
-  {
-    title: "Corporate Experiences",
-    desc: "Professional event planning delivered with elegance, precision, and clarity.",
-    icon: "🏢",
-    color: "from-slate-600 to-slate-800",
-    bgGradient: "from-slate-50 to-slate-100",
-    features: ["Conference Design", "Team Experiences", "Product Launches"]
-  },
-  {
-    title: "Private & Birthday Celebrations",
-    desc: "Personal celebrations crafted to feel joyful, refined, and unforgettable.",
+    title: "Birthday Extravaganza",
+    tagline: "Celebrate Life in Style",
+    desc: "Create unforgettable birthday memories with stunning golden décor, personalized themes, and magical moments that leave everyone mesmerized.",
     icon: "🎂",
-    color: "from-rose-500 to-pink-500",
-    bgGradient: "from-rose-50 to-pink-50",
-    features: ["Theme Parties", "Kids Celebrations", "Surprise Concepts"]
+    image: "/gallery/Birthday-Private-Parties.jpg",
+    stats: ["All Age Groups", "Custom Themes", "Surprise Planning"],
+    highlight:
+      "Families love how birthdays feel *cinematic yet personal* – sparkling backdrops, playful balloons, and surprise moments that keep guests smiling, cheering, and clicking pictures till the very end."
   },
   {
-    title: "Stage & Theme Design",
-    desc: "Visually striking themes that instantly elevate the atmosphere of the event.",
-    icon: "🎨",
-    color: "from-emerald-500 to-teal-500",
-    bgGradient: "from-emerald-50 to-teal-50",
-    features: ["Custom Concepts", "Stage Styling", "Lighting Design"]
+    title: "Corporate Excellence",
+    tagline: "Professional Events, Perfected",
+    desc: "Elevate your corporate gatherings with sophisticated setups, cutting-edge technology, and seamless execution that impresses clients and inspires teams.",
+    icon: "🏢",
+    image: "/gallery/Corporate-Events.jpg",
+    stats: ["Fortune 500 Clients", "Pan-India", "Tech Integration"],
+    highlight:
+      "Corporate leaders praise our events as *impeccably organised* – sharp branding, precise AV cues, and a polished ambience that reflects confidence, trust, and world‑class professionalism."
   },
   {
-    title: "Complete Event Management",
-    desc: "From first planning discussion to final execution — everything handled seamlessly.",
+    title: "Outdoor Celebrations",
+    tagline: "Nature's Grandeur, Curated",
+    desc: "Experience the magic of outdoor events with pristine garden setups, elegant lighting, and breathtaking décor that harmonizes with natural beauty.",
+    icon: "🌿",
+    image: "/gallery/Mehfil-Cultural-Events.jpg",
+    stats: ["Garden Weddings", "Open-Air Events", "Destination Setup"],
+    highlight:
+      "Guests rave about our outdoor soirées – soft lights under the sky, lush greens, and soulful music coming together to create an atmosphere that feels *free, magical, and beautifully intimate*."
+  },
+  {
+    title: "Grand Stage Design",
+    tagline: "Theatrical Magnificence",
+    desc: "Immerse your guests in opulent grandeur with our spectacular stage designs featuring royal drapery, crystal chandeliers, and luxurious floral arrangements.",
+    icon: "🎭",
+    image: "/gallery/Stage-Theme-Decoration.jpg",
+    stats: ["Royal Mandaps", "Crystal Décor", "Custom Lighting"],
+    highlight:
+      "Our stages keep guests *in awe* – layered chandeliers, dramatic florals, and royal textures that turn every entry, performance, and ritual into a show‑stopping moment."
+  },
+  {
+    title: "Luxury Interiors",
+    tagline: "Elegance Redefined",
+    desc: "Step into a world of refined sophistication with our exquisite interior transformations featuring premium fabrics, stunning chandeliers, and mesmerizing ambiance.",
     icon: "✨",
-    color: "from-violet-500 to-purple-600",
-    bgGradient: "from-violet-50 to-purple-50",
-    features: ["Strategic Planning", "Vendor Coordination", "On-Site Execution"]
+    image: "/gallery/Complete-Event-Management.jpg",
+    stats: ["Premium Fabrics", "Designer Setups", "Mood Lighting"],
+    highlight:
+      "Clients love how we convert simple venues into *luxury lounges* – velvety drapes, golden glows, and curated furniture that make every corner feel warm, inviting, and irresistibly photogenic."
+  }
+];
+
+const testimonials = [
+  {
+    quote:
+      "Mystic Moments turned our wedding into an absolute fairytale! From the majestic mandap decorated with fresh flowers and crystal chandeliers to the seamless coordination throughout the day, every detail was perfection. Our guests are still talking about the stunning décor and flawless execution. We couldn't have asked for a better team to make our special day truly magical and memorable!",
+    author: "Priya & Arjun Mehta",
+    event: "Luxury Wedding, Delhi",
+    rating: 5,
+    image: "/gallery/2.jpg"
   },
+  {
+    quote:
+      "Our daughter's birthday party was beyond spectacular! The golden shimmer wall, balloon arrangements, and personalized touches created such a joyful atmosphere. Every child and parent was amazed by the creativity and attention to detail. Mystic Moments truly understood our vision and brought it to life in the most extraordinary way. Highly recommend for anyone looking to create magical memories!",
+    author: "Sneha Kapoor",
+    event: "Birthday Celebration, Mumbai",
+    rating: 5,
+    image: "/gallery/1.jpg"
+  },
+  {
+    quote:
+      "We hosted our annual corporate conference with Mystic Moments and the results exceeded all expectations. The professional setup, sophisticated lighting, and seamless audio-visual integration impressed all our stakeholders. Their team's expertise in handling large-scale events with precision and elegance made our event a huge success. Absolutely world-class service and execution throughout!",
+    author: "Vikram Enterprises Ltd.",
+    event: "Corporate Conference, Bangalore",
+    rating: 5,
+    image: "/gallery/3.jpg"
+  }
 ];
 
 export default function ServicesPage() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
-      {/* Ambient Background */}
-      <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-amber-300/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-0 left-0 w-[520px] h-[520px] bg-purple-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-      <div className="absolute top-1/2 left-1/2 w-[420px] h-[420px] bg-rose-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }} />
+    <div className="relative min-h-screen bg-black overflow-hidden">
+      {/* Animated Gold Mesh Background */}
+      <div className="fixed inset-0 opacity-30 pointer-events-none">
+        <div
+          className="absolute top-0 -left-4 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob"
+          style={{ backgroundColor: GOLD_PRIMARY }}
+        />
+        <div
+          className="absolute top-0 -right-4 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"
+          style={{ backgroundColor: GOLD_SECONDARY }}
+        />
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000" />
+      </div>
 
-      <section className="relative py-32 max-w-7xl mx-auto px-6 z-10">
-        {/* Header */}
-        <div className="text-center mb-20 animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-semibold rounded-full shadow-lg mb-8">
-            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            <span>Our Expertise</span>
+      {/* Main Content */}
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
+          <div className="max-w-7xl mx-auto text-center">
+            {/* Premium Badge */}
+            <div className="inline-flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-[#D4AF37] to-[#FFD700] rounded-full mb-8 shadow-[0_0_50px_rgba(212,175,55,0.6)] animate-float">
+              <span className="w-2.5 h-2.5 bg-black rounded-full animate-pulse" />
+              <span className="text-black font-bold text-sm tracking-[0.2em]">
+                INDIA&apos;S PREMIER EVENT CURATORS
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-none">
+              <span className="block text-white font-serif tracking-tight">
+                Where Dreams
+              </span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] mt-4 font-serif italic animate-shimmer">
+                Become Reality
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-2xl md:text-3xl text-white/80 max-w-4xl mx-auto mb-12 font-light leading-relaxed">
+              Crafting <span className="font-bold text-[#FFD700] italic">extraordinary celebrations</span> through
+              <span className="font-semibold text-[#D4AF37]"> luxury décor</span>,
+              <span className="text-white font-bold"> flawless execution</span>, and
+              <span className="italic text-amber-300"> unforgettable experiences</span>.
+            </p>
+
+            {/* Decorative Divider */}
+            <div className="flex items-center justify-center gap-6 mb-16">
+              <span className="w-24 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]" />
+              <span className="flex items-center gap-3">
+                <span className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse" />
+                <span
+                  className="w-3 h-3 bg-[#FFD700] rounded-full animate-pulse"
+                  style={{ animationDelay: "0.3s" }}
+                />
+                <span
+                  className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse"
+                  style={{ animationDelay: "0.6s" }}
+                />
+              </span>
+              <span className="w-24 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]" />
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a
+                href="#services"
+                className="group relative px-10 py-5 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] rounded-full text-black font-bold text-lg shadow-[0_0_40px_rgba(212,175,55,0.6)] hover:shadow-[0_0_60px_rgba(212,175,55,0.9)] transition-all duration-500 hover:scale-110 overflow-hidden"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                <span className="relative z-10 tracking-wider">EXPLORE SERVICES</span>
+              </a>
+              <a
+                href="#testimonials"
+                className="px-10 py-5 border-2 border-[#D4AF37] rounded-full text-white font-semibold text-lg hover:bg-[#D4AF37]/10 transition-all duration-300 hover:scale-105"
+              >
+                VIEW SUCCESS STORIES
+              </a>
+            </div>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 animate-slide-up">
-            <span className="block text-slate-900">Our Signature</span>
-            <span className="block text-[#C9A24D] mt-2 font-serif italic">
-              Event Services
-            </span>
-          </h1>
-
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10">
-            Complete event solutions designed with intention — from concept
-            creation to flawless execution.
-          </p>
-
-          <div className="flex justify-center gap-3">
-            <span className="w-24 h-[2px] bg-gradient-to-r from-transparent to-amber-500" />
-            <span className="w-2 h-2 bg-amber-500 rounded-full" />
-            <span className="w-24 h-[2px] bg-gradient-to-r from-amber-500 to-transparent" />
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-bounce">
+            <span className="text-white/60 text-sm tracking-widest">SCROLL</span>
+            <span className="w-[1px] h-12 bg-gradient-to-b from-[#D4AF37] to-transparent" />
           </div>
-        </div>
+        </section>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group relative animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.12}s` }}
-            >
-              <div className="relative h-full bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-slate-100 hover:-translate-y-3">
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-15 blur-xl transition-opacity duration-500`} />
+        {/* Services Showcase */}
+        <section id="services" className="relative py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                Our{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#FFD700] italic font-serif">
+                  Signature Services
+                </span>
+              </h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto">
+                From intimate gatherings to grand celebrations — we create{" "}
+                <span className="font-bold text-[#FFD700]">magical moments</span> that last
+                forever.
+              </p>
+            </div>
 
-                <div className="relative z-10">
-                  <div className={`w-20 h-20 flex items-center justify-center rounded-2xl bg-gradient-to-br ${service.color} mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
-                    <span className="text-4xl">{service.icon}</span>
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="group relative h-[620px] rounded-3xl overflow-hidden cursor-pointer border border-white/5 hover:border-[#FFD700]/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_45px_rgba(212,175,55,0.7)]"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/30 group-hover:from-black/95 group-hover:via-black/85 transition-all duration-500" />
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-4 text-slate-900 group-hover:text-[#C9A24D] transition-colors">
-                    {service.title}
-                  </h3>
+                  {/* Content Overlay */}
+                  <div className="relative h-full flex flex-col justify-end p-10">
+                    {/* Icon */}
+                    <div className="mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                      <span className="text-7xl drop-shadow-[0_0_20px_rgba(212,175,55,0.8)]">
+                        {service.icon}
+                      </span>
+                    </div>
 
-                  <p className="text-slate-600 leading-relaxed mb-6">
-                    {service.desc}
-                  </p>
+                    {/* Tagline */}
+                    <p className="text-[#FFD700] text-sm font-semibold tracking-[0.3em] uppercase mb-3">
+                      {service.tagline}
+                    </p>
 
-                  <div className="space-y-2 mb-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    {service.features.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm text-slate-700">
-                        <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.color}`} />
-                        {feature}
-                      </div>
-                    ))}
+                    {/* Title */}
+                    <h3 className="text-4xl font-bold text-white mb-4 group-hover:text-[#FFD700] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+
+                    {/* Short highlight (customer–feel text) */}
+                    <p className="text-sm text-white/80 italic mb-3 max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-500 overflow-hidden">
+                      {service.highlight}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-white/80 text-lg leading-relaxed mb-6 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 transition-all duration-500 overflow-hidden">
+                      {service.desc}
+                    </p>
+
+                    {/* Stats */}
+                    <div className="flex flex-wrap gap-4 mb-6 max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-500 delay-100 overflow-hidden">
+                      {service.stats.map((stat, i) => (
+                        <span
+                          key={i}
+                          className="px-4 py-2 bg-[#D4AF37]/20 border border-[#D4AF37]/40 rounded-full text-[#FFD700] text-sm font-semibold backdrop-blur-sm"
+                        >
+                          {stat}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Learn More Button */}
+                    <button className="flex items-center gap-3 text-white font-bold text-lg opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 hover:gap-5">
+                      <span>Discover More</span>
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-black text-sm group-hover:rotate-45 transition-transform duration-300">
+                        →
+                      </span>
+                    </button>
                   </div>
 
-                  <button className="flex items-center gap-2 text-amber-600 font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    Learn More →
-                  </button>
+                  {/* Accent Border */}
+                  <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left shadow-[0_0_30px_rgba(212,175,55,0.8)]" />
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                <div className={`absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r ${service.color} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+        {/* Testimonials Section */}
+        <section
+          id="testimonials"
+          className="relative py-32 px-6 bg-gradient-to-b from-black via-gray-900/50 to-black"
+        >
+          <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                Client{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#FFD700] italic font-serif">
+                  Success Stories
+                </span>
+              </h2>
+              <p className="text-xl text-white/70 max-w-3xl mx-auto">
+                Real celebrations, real emotions, real testimonials from families who trusted us
+                with their{" "}
+                <span className="font-bold text-[#FFD700]">most precious moments</span>.
+              </p>
+            </div>
+
+            {/* Testimonials Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-gray-900 to-black rounded-3xl overflow-hidden border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] hover:-translate-y-3"
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.author}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative p-8">
+                    {/* Quote Icon */}
+                    <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-[#D4AF37] to-[#FFD700] rounded-full flex items-center justify-center text-4xl text-black shadow-[0_0_30px_rgba(212,175,55,0.6)] font-serif">
+                      "
+                    </div>
+
+                    {/* Star Rating */}
+                    <div className="flex gap-1 mb-6 mt-6">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <span
+                          key={i}
+                          className="text-[#FFD700] text-2xl drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]"
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Testimonial Text */}
+                    <p className="text-white/90 leading-relaxed mb-8 text-base italic">
+                      {testimonial.quote}
+                    </p>
+
+                    {/* Author Info */}
+                    <div className="border-t border-[#D4AF37]/30 pt-6">
+                      <p className="text-[#FFD700] font-bold text-lg mb-1">
+                        {testimonial.author}
+                      </p>
+                      <p className="text-white/60 text-sm font-medium">
+                        {testimonial.event}
+                      </p>
+                    </div>
+
+                    {/* Verified Badge */}
+                    <div className="absolute top-6 right-6 px-3 py-1 bg-green-500/20 border border-green-500/40 rounded-full text-green-400 text-xs font-semibold flex items-center gap-2">
+                      <span>✓</span>
+                      <span>VERIFIED</span>
+                    </div>
+                  </div>
+
+                  {/* Bottom Accent */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] to-[#FFD700] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="relative py-32 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-[3rem] p-16 border-4 border-[#D4AF37] shadow-[0_0_80px_rgba(212,175,55,0.4)] overflow-hidden">
+              {/* Decorative Corners */}
+              <div className="absolute top-0 left-0 w-40 h-40 border-t-8 border-l-8 border-[#FFD700] rounded-tl-[3rem]" />
+              <div className="absolute bottom-0 right-0 w-40 h-40 border-b-8 border-r-8 border-[#FFD700] rounded-br-[3rem]" />
+
+              <div className="relative text-center">
+                <h2 className="text-5xl md:text-6xl font-serif text-white mb-6">
+                  Why{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#FFD700] italic">
+                    Mystic Moments
+                  </span>
+                  ?
+                </h2>
+
+                <p className="text-white/80 text-xl mb-16 max-w-3xl mx-auto leading-relaxed">
+                  We don&apos;t just plan events — we{" "}
+                  <span className="font-bold text-[#FFD700]">craft experiences</span> that blend
+                  <span className="italic text-[#D4AF37]"> luxury</span>,
+                  <span className="font-semibold text-white"> precision</span>, and
+                  <span className="font-bold text-amber-300"> emotion</span> into unforgettable
+                  memories.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {[
+                    {
+                      icon: "🎯",
+                      title: "Bespoke Planning",
+                      desc: "Every celebration is uniquely tailored to your vision with personalised attention to every intricate detail and preference."
+                    },
+                    {
+                      icon: "💎",
+                      title: "Premium Quality",
+                      desc: "Exclusive partnerships with India’s finest vendors ensure luxury materials, exquisite décor, and flawless execution."
+                    },
+                    {
+                      icon: "⚡",
+                      title: "Seamless Delivery",
+                      desc: "Stress‑free coordination with expert planning, precise timelines, and confident on‑site management from start to finish."
+                    }
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-[#D4AF37]/30 hover:bg-gradient-to-br hover:from-[#D4AF37]/20 hover:to-[#FFD700]/10 hover:border-[#FFD700] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(212,175,55,0.5)]"
+                    >
+                      <div className="text-7xl mb-6 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]">
+                        {item.icon}
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#FFD700] transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-white/70 leading-relaxed group-hover:text-white/90 transition-colors">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Why Choose */}
-        <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 rounded-3xl p-14 text-center shadow-2xl animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">
-            Why Clients Choose Mystic Moments
-          </h2>
-          <p className="text-white/75 text-lg mb-12 max-w-3xl mx-auto">
-            Every event is unique — our approach is designed to respect that
-            individuality while delivering absolute excellence.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { icon: "🎯", title: "Tailored Planning", desc: "Each event is customized around your vision and priorities." },
-              { icon: "💎", title: "Refined Quality", desc: "Premium vendors, detailing, and flawless execution." },
-              { icon: "⚡", title: "Effortless Delivery", desc: "Smooth timelines, calm coordination, and confident execution." },
-            ].map((item, index) => (
-              <div key={index} className="bg-white/10 rounded-2xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <div className="text-5xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
-                <p className="text-white/70">{item.desc}</p>
-              </div>
-            ))}
           </div>
-        </div>
+        </section>
 
-        {/* CTA */}
-        <div className="text-center mt-24 animate-fade-in">
-          <p className="text-slate-600 text-lg mb-6">
-            Ready to begin planning your next unforgettable experience?
-          </p>
-          <button className="px-12 py-5 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-full shadow-lg hover:shadow-amber-500/40 transition-all hover:scale-105">
-            Book a Consultation
-          </button>
-        </div>
-      </section>
+        {/* Final CTA */}
+        <section className="relative py-32 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Ready to Create Your{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#FFD700] italic font-serif">
+                Dream Celebration
+              </span>
+              ?
+            </h2>
+            <p className="text-xl text-white/70 mb-12">
+              Let&apos;s transform your vision into an{" "}
+              <span className="font-bold text-[#FFD700]">extraordinary reality</span>.
+            </p>
+            <a
+              href="/contact"
+              className="group inline-flex items-center gap-4 px-14 py-6 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] rounded-full text-black font-bold text-xl shadow-[0_0_50px_rgba(212,175,55,0.7)] hover:shadow-[0_0_80px_rgba(212,175,55,1)] transition-all duration-500 hover:scale-110 overflow-hidden relative"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <span className="relative z-10 tracking-widest">BOOK CONSULTATION</span>
+              <span className="relative z-10 inline-flex h-8 w-8 items-center justify-center rounded-full bg-black/20 text-sm font-bold group-hover:rotate-[360deg] transition-transform duration-700">
+                →
+              </span>
+            </a>
+          </div>
+        </section>
+      </div>
 
+      {/* Extra styling for animations */}
+      <style jsx>{`
+        @keyframes blob {
+          0%,
+          100% {
+            transform: translate(0, 0) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+        }
 
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        @keyframes shimmer {
+          0% {
+            background-position: -1000px 0;
+          }
+          100% {
+            background-position: 1000px 0;
+          }
+        }
+
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-shimmer {
+          animation: shimmer 3s linear infinite;
+          background-size: 1000px 100%;
+        }
+      `}</style>
     </div>
   );
-  
 }
+  
